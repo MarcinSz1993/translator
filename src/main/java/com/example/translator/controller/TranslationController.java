@@ -6,17 +6,14 @@ import com.example.translator.service.TranslatorService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Getter
 @Setter
 @RequiredArgsConstructor
 @RequestMapping("/translator")
-public class TransactionController {
+public class TranslationController {
 
     private final TranslatorService translatorService;
 
@@ -24,6 +21,7 @@ public class TransactionController {
     public TranslationDto testTranslator(@RequestBody DataRequestForTranslation dataRequestForTranslation){
         return translatorService.getTranslation(dataRequestForTranslation);
     }
+
 
 
 }

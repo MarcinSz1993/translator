@@ -1,0 +1,30 @@
+body {
+    background: bisque;
+}
+h1{
+    text-align: center;
+    color: darkgreen;
+}
+
+h2{
+    text-align: center;
+    color: red;
+}
+
+form{
+    text-align: center;
+}
+
+title{
+    text-align: center;
+}
+
+p.from-english-to-polish{
+    text-align: center;
+    font-size: small;
+}
+
+p.from-polish-to-english{
+    text-align: center;
+    font-size: small;
+}
