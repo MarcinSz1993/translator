@@ -5,5 +5,7 @@ import com.example.translator.request.DataRequestForTranslation;
 
 public interface TranslationApi {
 
-    TranslationDto getTranslation(DataRequestForTranslation dataRequestForTranslation);
+    TranslationDto getTranslationEn(DataRequestForTranslation dataRequestForTranslation);
+
+    TranslationDto getTranslationPl(DataRequestForTranslation dataRequestForTranslation);
 }

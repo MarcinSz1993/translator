@@ -1,0 +1,20 @@
+body{
+    background-color: darkgreen;
+}
+
+h1{
+    text-align: center;
+    color: gold;
+    mso-bidi-font-style: italic;
+}
+
+h2{
+    text-align: center;
+    color: aquamarine;
+}
+p{
+    text-align: center;
+}
+a{
+    color: black;
+}
