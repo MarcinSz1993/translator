@@ -17,9 +17,14 @@ public class TranslationController {
 
     private final TranslatorService translatorService;
 
-    @PostMapping("/translate")
-    public TranslationDto testTranslator(@RequestBody DataRequestForTranslation dataRequestForTranslation){
-        return translatorService.getTranslation(dataRequestForTranslation);
+    @PostMapping("/translateEn")
+    public TranslationDto translateEn(@RequestBody DataRequestForTranslation dataRequestForTranslation){
+        return translatorService.getTranslationEn(dataRequestForTranslation);
+    }
+
+    @PostMapping("/translatePl")
+    public TranslationDto translatePl(@RequestBody DataRequestForTranslation dataRequestForTranslation){
+        return translatorService.getTranslationPl(dataRequestForTranslation);
     }
 
 

@@ -19,8 +19,7 @@ public class TranslatorService implements TranslationApi {
     }
 
 
-    @Override
-    public TranslationDto getTranslation(DataRequestForTranslation dataRequestForTranslation) {
+    public TranslationDto getTranslationEn(DataRequestForTranslation dataRequestForTranslation) {
         dataRequestForTranslation.setTarget_lang("EN");
         return webClient.post()
                 .uri("https://api-free.deepl.com/v2/translate")
@@ -32,4 +31,19 @@ public class TranslatorService implements TranslationApi {
                 .map(TranslationMapper::mapFromTranslationResponseToTranslationDto)
                 .block();
     }
+
+    @Override
+    public TranslationDto getTranslationPl(DataRequestForTranslation dataRequestForTranslation) {
+        dataRequestForTranslation.setTarget_lang("PL");
+        return webClient.post()
+                .uri("https://api-free.deepl.com/v2/translate")
+                .header("Authorization", "DeepL-Auth-Key 5faf23e8-6f6d-4fff-ad4c-6702437406f2:fx")
+                .header("Content-Type", "application/json")
+                .bodyValue(dataRequestForTranslation)
+                .retrieve()
+                .bodyToMono(TranslationResponse.class)
+                .map(TranslationMapper::mapFromTranslationResponseToTranslationDto)
+                .block();
+    }
+
 }
