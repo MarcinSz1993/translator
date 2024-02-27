@@ -28,6 +28,8 @@ public class UserModel implements UserDetails {
 
     private String password;
 
+    private String email;
+
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
