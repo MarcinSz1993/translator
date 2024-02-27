@@ -29,12 +29,15 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/login/**","/register/**").permitAll()
+                        req->req.requestMatchers("/loginPage/**","/registration/**","/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
 
 
-                ).userDetailsService(userDetailsImpl)
+
+                )
+                .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer.clearAuthentication(true))
+                .userDetailsService(userDetailsImpl)
                 .sessionManagement(session ->session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)

@@ -27,8 +27,4 @@ public class AuthenticationController {
             @RequestBody UserModel request ){
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
-
-
-
-
 }
