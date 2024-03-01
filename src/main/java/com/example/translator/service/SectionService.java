@@ -4,10 +4,13 @@ import com.example.translator.model.Section;
 import com.example.translator.model.UserModel;
 import com.example.translator.repository.SectionRepository;
 import com.example.translator.repository.UserRepository;
+import com.example.translator.request.AddSectionRequest;
+import com.example.translator.request.AddWordToSectionRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,9 +20,9 @@ public class SectionService {
     private final SectionRepository sectionRepository;
     private final UserRepository userRepository;
 
-    public Section addSection(UserDetails userDetails, String name) {
+    public Section addSection(UserDetails userDetails, AddSectionRequest request) {
         Section section = new Section();
-        section.setName(name);
+        section.setName(request.getSectionName());
 
         String username = userDetails.getUsername();
         Optional<UserModel> user = userRepository.findByUsername(username);
@@ -32,5 +35,13 @@ public class SectionService {
             // Obsługa przypadku, gdy użytkownik nie istnieje
             throw new IllegalArgumentException("User not found");
         }
+    }
+
+    public Section addWordToSection(AddWordToSectionRequest request){
+        Section section = sectionRepository.findByName(request.getSectionName()).orElseThrow();
+        List<String> words = section.getWords();
+
+        words.add(request.getWord());
+        return sectionRepository.save(section);
     }
 }
