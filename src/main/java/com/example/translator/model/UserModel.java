@@ -1,7 +1,10 @@
 package com.example.translator.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,9 +14,10 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "usermodel")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserModel implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +36,13 @@ public class UserModel implements UserDetails {
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+
+    @OneToMany(mappedBy = "userModel",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Section> sections;
+
+
 
 
     @Override

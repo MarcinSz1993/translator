@@ -11,7 +11,7 @@ public class UserModelService {
 
     private final UserRepository userRepository;
 
-    public UserModel registerNewUser(UserModel userModel){
+    public UserModel createUser(UserModel userModel){
         return userRepository.save(userModel);
     }
 }

@@ -2,6 +2,7 @@ package com.example.translator.controller;
 
 import com.example.translator.model.Role;
 import com.example.translator.model.UserModel;
+import com.example.translator.request.CreateUserRequest;
 import com.example.translator.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,9 @@ public class RegistrationViewController {
     }
 
     @PostMapping("/registration")
-    public String registerUser(@ModelAttribute("userModel") UserModel userModel, Model model) {
-        userModel.setRole(Role.valueOf("USER"));
-        authenticationService.register(userModel);
+    public String registerUser(@ModelAttribute("userModel")CreateUserRequest request, Model model) {
+        //request.setRole(Role.valueOf("USER"));
+        authenticationService.register(request);
         model.addAttribute("message","Submitted Successfully");
         return "registration_success_view";
     }
