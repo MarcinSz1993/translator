@@ -1,4 +1,4 @@
-package com.example.translator.controller;
+package com.example.translator.restcontroller;
 
 import com.example.translator.dto.TranslationDto;
 import com.example.translator.request.DataRequestForTranslation;

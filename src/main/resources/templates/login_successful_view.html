@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style_login_successful.css">
     <title>Login ok</title>
 </head>
 <body>
+<br><br><br><br><br><br><br><br><br><br><br>
 <h1>Login successful!</h1>
+<p>Token:  <span th:text="${token}"></span></p>
 <h3><a href="/">Przejdź do translatora</a></h3>
+<div th:insert="~{part/footer :: footer}"></div>
 </body>
 </html>
