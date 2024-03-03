@@ -1,0 +1,38 @@
+h1{
+    color: gold;
+    text-align-all: center;
+    text-align: center;
+}
+
+h3{
+    color: gold;
+    text-align: center;
+    text-align-all: center;
+}
+
+form{
+    color: gold;
+    text-align: center;
+    text-align-all: center;
+}
+label{
+    color: gold;
+    text-align: center;
+    text-align-all: center;
+}
+p{
+    color: white;
+}
+
+body{
+    background-color: black;
+}
+
+
+footer {
+    margin-top: 400px;
+    text-align: center;
+    padding: 3px;
+    background-color: silver;
+    color: darkred;
+}
