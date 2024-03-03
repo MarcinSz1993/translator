@@ -1,4 +1,4 @@
-package com.example.translator.controller;
+package com.example.translator.restcontroller;
 
 import com.example.translator.model.Section;
 import com.example.translator.request.AddSectionRequest;

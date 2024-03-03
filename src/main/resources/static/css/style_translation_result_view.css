@@ -18,3 +18,8 @@ p{
 a{
     color: black;
 }
+
+input.section{
+text-align: center;
+    font-size: small;
+}

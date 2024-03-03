@@ -32,7 +32,7 @@ public class SectionService {
 
             return sectionRepository.save(section);
         } else {
-            // Obsługa przypadku, gdy użytkownik nie istnieje
+
             throw new IllegalArgumentException("User not found");
         }
     }

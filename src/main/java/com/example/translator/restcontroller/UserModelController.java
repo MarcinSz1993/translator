@@ -1,4 +1,4 @@
-package com.example.translator.controller;
+package com.example.translator.restcontroller;
 
 import com.example.translator.model.UserModel;
 import com.example.translator.service.UserModelService;

@@ -1,5 +1,6 @@
 package com.example.translator.controller;
 
+import com.example.translator.model.AuthenticationResponse;
 import com.example.translator.model.UserModel;
 import com.example.translator.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,10 @@ public class LoginViewController {
 
     @PostMapping("/loginPage")
     public String login(@ModelAttribute("userModel")UserModel userModel, Model model){
-        authenticationService.authenticate(userModel);
-        model.addAttribute("message","Login successful");
+        AuthenticationResponse authenticate = authenticationService.authenticate(userModel);
+        String token = authenticate.getToken();
+        model.addAttribute("token",token);
+
 
         return "login_successful_view";
     }
