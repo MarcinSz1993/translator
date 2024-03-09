@@ -44,4 +44,8 @@ public class SectionService {
         words.add(request.getWord());
         return sectionRepository.save(section);
     }
+
+    public List<Section> getAllSections(){
+        return sectionRepository.findAll();
+    }
 }
