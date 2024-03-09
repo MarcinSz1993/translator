@@ -2,31 +2,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/css/style_section_view.css">
+    <title>Sections</title>
 </head>
 <body>
-<form action="sections/createSection" th:action="@{/sections/createSection}" method="post">
-    <label for="sectionName">Nazwa Sekcji:</label>
-    <input type="text" id="sectionName" name="sectionName" required>
-    <button type="submit">Dodaj Sekcję</button>
-
-</form>
+<br><br><br>
+<h2 th:text="${lastTranslation}"  class="translation-result"></h2>
+<h2 th:text="${wordToTranslate}" class="wordToTranslate"></h2>
 <br><br><br>
 <h1>Twoje sekcje</h1>
 <br>
+
 <table class="table">
     <thead>
-
     </thead>
     <tbody>
     <tr th:each="section : ${sections}">
         <td th:text="${section.getName()}"></td>
         <td style="white-space: nowrap">
             <a class="btn btn-primary btn-sm"
-               th:href="@{/loginPage}">Dodaj</a>
+               th:href="@{/loginPage}">Dodaj powyższą frazę do tej sekcji.</a>
         </td>
     </tr>
     </tbody>
 </table>
+
+<form action="sections/createSection" th:action="@{/sections/createSection}" method="post">
+    <label for="sectionName">Nazwa Sekcji:</label>
+    <input type="text" id="sectionName" name="sectionName" required>
+    <button type="submit">Dodaj Sekcję</button>
+
+</form>
 </body>
 </html>
