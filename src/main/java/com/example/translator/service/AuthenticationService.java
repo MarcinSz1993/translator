@@ -1,5 +1,7 @@
 package com.example.translator.service;
 
+import com.example.translator.dto.UserModelDto;
+import com.example.translator.mapper.UserModelMapper;
 import com.example.translator.model.AuthenticationResponse;
 import com.example.translator.model.Role;
 import com.example.translator.model.UserModel;
@@ -18,15 +20,9 @@ import java.util.Collections;
 public class AuthenticationService {
 
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final JwtService jwtService;
-
     private final AuthenticationManager authenticationManager;
-
-
-
     public AuthenticationResponse register(CreateUserRequest request) {
 
         UserModel user = new UserModel();
@@ -39,9 +35,9 @@ public class AuthenticationService {
         user.setRole(Role.valueOf("USER"));
 
         user = userRepository.save(user);
-
         String token = jwtService.generateToken(user);
 
+        UserModelMapper.convertUserModelToUserModelDto(user);
         return new AuthenticationResponse(token);
     }
 
@@ -49,14 +45,10 @@ public class AuthenticationService {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                     request.getUsername(),
-                    request.getPassword()
-                )
-        );
+                    request.getPassword()));
 
         UserModel user = userRepository.findByUsername(request.getUsername()).orElseThrow();
-
         String token = jwtService.generateToken(user);
-
         return new AuthenticationResponse(token);
     }
 }

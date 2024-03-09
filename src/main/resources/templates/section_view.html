@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Twoje sekcje</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>Twoje sekcje</h1>
+<form action="sections/createSection" th:action="@{/sections/createSection}" method="post">
+    <label for="sectionName">Nazwa Sekcji:</label>
+    <input type="text" id="sectionName" name="sectionName" required>
+    <button type="submit">Dodaj Sekcję</button>
 
+</form>
+<br><br><br>
+<h1>Twoje sekcje</h1>
+<br>
+<table class="table">
+    <thead>
+
+    </thead>
+    <tbody>
+    <tr th:each="section : ${sections}">
+        <td th:text="${section.getName()}"></td>
+        <td style="white-space: nowrap">
+            <a class="btn btn-primary btn-sm"
+               th:href="@{/loginPage}">Dodaj</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

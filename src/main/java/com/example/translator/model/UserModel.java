@@ -2,10 +2,12 @@ package com.example.translator.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,10 +30,12 @@ public class UserModel implements UserDetails {
 
     private String lastName;
 
+    @Column(unique = true)
     private String username;
 
     private String password;
 
+    @Column(unique = true)
     private String email;
 
     @Enumerated(value = EnumType.STRING)

@@ -1,8 +1,13 @@
 package com.example.translator.controller;
 
 import com.example.translator.dto.TranslationDto;
+import com.example.translator.model.UserModel;
+import com.example.translator.repository.UserRepository;
 import com.example.translator.request.DataRequestForTranslation;
+import com.example.translator.service.JwtService;
 import com.example.translator.service.TranslatorService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +15,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
+
 @Controller
 @RequiredArgsConstructor
 public class TranslatorViewController {
 
     private final TranslatorService translatorService;
+    private final JwtService jwtService;
+    private final UserRepository userRepository;
 
     @GetMapping("/")
-    public String homePage(){
-        return "translator_view";
+    public String homePage(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                if("authToken".equals(cookie.getName())){
+                    String token = cookie.getValue();
+
+                    String username = jwtService.extractUsername(token);
+                    UserModel user = userRepository.findByUsername(username).orElseThrow();
+
+                    if(jwtService.isValid(token,user)){
+                        return "translator_view";
+                    } else {
+                        return "translator_view_error";
+                    }
+                }
+            }
+        }
+        return "translator_view_error";
     }
 
     @PostMapping("/translateEn")
