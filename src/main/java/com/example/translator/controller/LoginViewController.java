@@ -5,6 +5,7 @@ import com.example.translator.model.UserModel;
 import com.example.translator.service.AuthenticationService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +23,14 @@ public class LoginViewController {
     }
 
     @PostMapping("/loginPage")
-    public String login(UserModel userModel, HttpServletResponse response){
+    public String login(UserModel userModel, HttpServletResponse response, HttpSession session){
         AuthenticationResponse authenticate = authenticationService.authenticate(userModel);
         String token = authenticate.getToken();
 
         Cookie cookie = new Cookie("authToken",token);
         cookie.setPath("/");
         response.addCookie(cookie);
+        session.setAttribute("username",userModel.getUsername());
 
         return "login_successful_view";
     }

@@ -1,0 +1,21 @@
+body{
+    background-color: bisque;
+}
+
+h1{
+    color: gold;
+}
+h2{
+    text-align: center;
+}
+
+.translation-result {
+    color: red;
+    margin-right: 20px;
+    text-align: center;
+}
+.wordToTranslate{
+    margin-right: 20px;
+    color: black;
+    text-align: center;
+}

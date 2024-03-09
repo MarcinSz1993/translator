@@ -5,9 +5,11 @@ import com.example.translator.model.UserModel;
 import com.example.translator.repository.UserRepository;
 import com.example.translator.request.DataRequestForTranslation;
 import com.example.translator.service.JwtService;
+import com.example.translator.service.SectionService;
 import com.example.translator.service.TranslatorService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,7 @@ public class TranslatorViewController {
     private final TranslatorService translatorService;
     private final JwtService jwtService;
     private final UserRepository userRepository;
+    private final SectionService sectionService;
 
     @GetMapping("/")
     public String homePage(HttpServletRequest request){
@@ -47,11 +50,14 @@ public class TranslatorViewController {
         return "translator_view_error";
     }
 
+
     @PostMapping("/translateEn")
-    public String translateFromPlToEn(@ModelAttribute DataRequestForTranslation dataRequestForTranslation, Model model) {
+    public String translateFromPlToEn(@ModelAttribute DataRequestForTranslation dataRequestForTranslation, Model model, HttpSession session) {
         TranslationDto translationDto = translatorService.getTranslationEn(dataRequestForTranslation);
         String translation = translationDto.getTranslation();
         model.addAttribute("translation", translation);
+        session.setAttribute("lastTranslation",translation);
+        session.setAttribute("wordToTranslate",dataRequestForTranslation.getText()[0]);
         return "translation_result_view";
     }
 
