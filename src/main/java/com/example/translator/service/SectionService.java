@@ -45,7 +45,7 @@ public class SectionService {
         return sectionRepository.save(section);
     }
 
-    public List<Section> getAllSections(){
-        return sectionRepository.findAll();
+    public List<Section> getAllSections(String username){
+        return sectionRepository.findAllByUserModel_Username(username);
     }
 }
