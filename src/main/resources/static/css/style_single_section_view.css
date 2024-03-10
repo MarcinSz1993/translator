@@ -1,0 +1,25 @@
+body{
+    background-color: bisque;
+}
+
+h1{
+    color: blue;
+    text-align: center;
+}
+
+h2{
+    color: brown;
+    text-align: center;
+}
+li{
+    text-align: center;
+    color: red;
+}
+
+.backToTranslator{
+    text-align: left;
+}
+
+.backToSections{
+    text-align: right;
+}
