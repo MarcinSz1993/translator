@@ -79,10 +79,12 @@ public class SectionViewController {
         return "redirect:/sections/all";
         }
         @GetMapping("/singleSection")
-        public String getSingleSection(Model model,@ModelAttribute String section,HttpSession session){
+        public String getSingleSection(Model model,HttpServletRequest request,HttpSession session){
             String username = (String) session.getAttribute("username");
-            List<String> wordsFromSection = userModelService.getWordsFromSection(username, section);
+            String sectionName = request.getParameter("sectionName");
+            List<String> wordsFromSection = userModelService.getWordsFromSection(username, sectionName);
             model.addAttribute("wordsInSection",wordsFromSection);
+            model.addAttribute("sectionName",sectionName);
             return "single_section_view";
         }
 }
