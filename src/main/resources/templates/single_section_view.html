@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1 th:text="Example"></h1>
+<h1 th:text="'Sekcja: ' + ${sectionName}"></h1>
 <h2>Lista słów w sekcji:</h2>
 <ul>
     <li th:each="word : ${wordsInSection}" th:text="${word}"></li>
