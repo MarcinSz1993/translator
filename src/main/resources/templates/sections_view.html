@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     <tr th:each="section : ${sections}">
-        <td><a href="@{'/sections/singleSection'}" th:text="${section.getName()}"></a></td>
+        <td><a th:href="@{'/sections/singleSection?sectionName=' + ${section.getName()}}" th:text="${section.getName()}"></a></td>
         <td style="white-space: nowrap">
             <form th:action="@{/sections/addWord}" method="post" th:object="${addWordForm}">
                 <input type="hidden" th:name="sectionName" th:value="${section.getName()}">
