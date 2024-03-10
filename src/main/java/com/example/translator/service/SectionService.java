@@ -48,4 +48,13 @@ public class SectionService {
     public List<Section> getAllSections(String username){
         return sectionRepository.findAllByUserModel_Username(username);
     }
+
+    public Optional<Section> findSectionByName(String sectionName){
+        return sectionRepository.findByName(sectionName);
+    }
+
+    public List<String>getWordsFromSections(String sectionName){
+        Optional<Section> section = sectionRepository.findByName(sectionName);
+        return section.get().getWords();
+    }
 }
