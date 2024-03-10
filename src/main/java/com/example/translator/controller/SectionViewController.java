@@ -7,6 +7,7 @@ import com.example.translator.request.AddSectionRequest;
 import com.example.translator.request.AddWordToSectionRequest;
 import com.example.translator.service.JwtService;
 import com.example.translator.service.SectionService;
+import com.example.translator.service.UserModelService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -28,6 +29,7 @@ public class SectionViewController {
     private final SectionService sectionService;
     private final JwtService jwtService;
     private final UserRepository userRepository;
+    private final UserModelService userModelService;
 
     @GetMapping("/create")
     public String getCreateSectionPage(Model model){
@@ -45,7 +47,8 @@ public class SectionViewController {
                                             String token = cookie.getValue();
                                             String username = jwtService.extractUsername(token);
                                             UserModel user = userRepository.findByUsername(username).orElseThrow();
-                                            sectionService.addSection(user,request);
+                                            sectionService.addSection(user, request);
+
                                         }
                                     }
                                     return "redirect:/sections/all";
@@ -56,15 +59,30 @@ public class SectionViewController {
             List<Section> allSections = sectionService.getAllSections(username);
             String lastTranslation = (String) session.getAttribute("lastTranslation");
             String wordToTranslate = (String) session.getAttribute("wordToTranslate");
+
+            AddWordToSectionRequest addWordForm = new AddWordToSectionRequest();
+            model.addAttribute("addWordForm",addWordForm);
             model.addAttribute("sections",allSections);
             model.addAttribute("lastTranslation",lastTranslation);
             model.addAttribute("wordToTranslate",wordToTranslate);
-            return "section_view";
+
+            return "sections_view";
         }
 
         @PostMapping("/addWord")
-        public String addWordToSection(AddWordToSectionRequest request){
-        sectionService.addWordToSection(request);
-        return "redirect:/sections/words";
+        public String addWordToSection(@ModelAttribute("addWordForm") AddWordToSectionRequest addWordForm){
+            String sectionName = addWordForm.getSectionName();
+            String word = addWordForm.getWord();
+            addWordForm.setSectionName(sectionName);
+            addWordForm.setWord(word);
+            sectionService.addWordToSection(addWordForm);
+        return "redirect:/sections/all";
+        }
+        @GetMapping("/singleSection")
+        public String getSingleSection(Model model,@ModelAttribute String section,HttpSession session){
+            String username = (String) session.getAttribute("username");
+            List<String> wordsFromSection = userModelService.getWordsFromSection(username, section);
+            model.addAttribute("wordsInSection",wordsFromSection);
+            return "single_section_view";
         }
 }
