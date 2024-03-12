@@ -1,5 +1,7 @@
 package com.example.translator.service;
 
+import com.example.translator.exception.SectionNotExistsException;
+import com.example.translator.exception.UserNotFoundException;
 import com.example.translator.model.Section;
 import com.example.translator.model.UserModel;
 import com.example.translator.repository.SectionRepository;
@@ -33,7 +35,7 @@ public class SectionService {
             return sectionRepository.save(section);
         } else {
 
-            throw new IllegalArgumentException("User not found");
+            throw new UserNotFoundException(username);
         }
     }
 
@@ -49,12 +51,4 @@ public class SectionService {
         return sectionRepository.findAllByUserModel_Username(username);
     }
 
-    public Optional<Section> findSectionByName(String sectionName){
-        return sectionRepository.findByName(sectionName);
-    }
-
-    public List<String>getWordsFromSections(String sectionName){
-        Optional<Section> section = sectionRepository.findByName(sectionName);
-        return section.get().getWords();
-    }
 }
