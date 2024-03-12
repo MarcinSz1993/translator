@@ -1,6 +1,6 @@
 package com.example.translator.service;
 
-import com.example.translator.dto.UserModelDto;
+import com.example.translator.exception.UserNotFoundException;
 import com.example.translator.mapper.UserModelMapper;
 import com.example.translator.model.AuthenticationResponse;
 import com.example.translator.model.Role;
@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,8 +48,14 @@ public class AuthenticationService {
                     request.getUsername(),
                     request.getPassword()));
 
-        UserModel user = userRepository.findByUsername(request.getUsername()).orElseThrow();
-        String token = jwtService.generateToken(user);
-        return new AuthenticationResponse(token);
+        Optional<UserModel> user = userRepository.findByUsername(request.getUsername());
+        if(user.isPresent()){
+            UserModel userModel = user.get();
+            String token = jwtService.generateToken(userModel);
+            return  new AuthenticationResponse(token);
+        }else
+        {
+            throw new UserNotFoundException(request.getUsername());
+        }
     }
 }
