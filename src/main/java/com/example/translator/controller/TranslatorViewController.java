@@ -49,8 +49,6 @@ public class TranslatorViewController {
         }
         return "translator_view_error";
     }
-
-
     @PostMapping("/translateEn")
     public String translateFromPlToEn(@ModelAttribute DataRequestForTranslation dataRequestForTranslation, Model model, HttpSession session) {
         TranslationDto translationDto = translatorService.getTranslationEn(dataRequestForTranslation);
