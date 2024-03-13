@@ -6,10 +6,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
 public class ControllerAdvisor {
-
-    @ExceptionHandler(UserNotFoundException.class)
-    public ModelAndView userNotFoundExceptionHandler(UserNotFoundException ex){
-        ModelAndView modelAndView = new ModelAndView("error/user_not_found");
+    @ExceptionHandler(BadCredentialsException.class)
+    public ModelAndView handleBadCredentialsException(BadCredentialsException ex) {
+        ModelAndView modelAndView = new ModelAndView("error/bad_credentials");
+        modelAndView.addObject("message", ex.getMessage());
+        return modelAndView;
+    }
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ModelAndView handleUserAlreadyExistsException(UserAlreadyExistsException ex){
+        ModelAndView modelAndView = new ModelAndView("/error/user_already_exists");
         modelAndView.addObject("message",ex.getMessage());
         return modelAndView;
     }

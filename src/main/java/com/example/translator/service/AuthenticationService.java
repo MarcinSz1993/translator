@@ -1,6 +1,7 @@
 package com.example.translator.service;
 
-import com.example.translator.exception.UserNotFoundException;
+import com.example.translator.exception.BadCredentialsException;
+import com.example.translator.exception.UserAlreadyExistsException;
 import com.example.translator.mapper.UserModelMapper;
 import com.example.translator.model.AuthenticationResponse;
 import com.example.translator.model.Role;
@@ -10,6 +11,7 @@ import com.example.translator.request.CreateUserRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,13 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
     public AuthenticationResponse register(CreateUserRequest request) {
+
+        if(userRepository.existsByEmail(request.getEmail()) ||
+                userRepository.existsByUsername(request.getUsername())){
+            throw new UserAlreadyExistsException();
+        }
 
         UserModel user = new UserModel();
         user.setFirstName(request.getFirstName());
@@ -42,20 +50,24 @@ public class AuthenticationService {
         return new AuthenticationResponse(token);
     }
 
-    public AuthenticationResponse authenticate(UserModel request){
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                    request.getUsername(),
-                    request.getPassword()));
-
-        Optional<UserModel> user = userRepository.findByUsername(request.getUsername());
-        if(user.isPresent()){
+    public AuthenticationResponse authenticate(UserModel request) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getUsername(),
+                            request.getPassword()));
+            Optional<UserModel> user = userRepository.findByUsername(request.getUsername());
+        if (user.isPresent()) {
             UserModel userModel = user.get();
             String token = jwtService.generateToken(userModel);
-            return  new AuthenticationResponse(token);
-        }else
-        {
-            throw new UserNotFoundException(request.getUsername());
+            return new AuthenticationResponse(token);
+        } else {
+            throw new BadCredentialsException();
+        }
+
+        } catch (AuthenticationException exception) {
+            throw new BadCredentialsException();
         }
     }
+
 }
