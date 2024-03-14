@@ -38,7 +38,6 @@ public class SectionService {
             throw new UserNotFoundException(username);
         }
     }
-
     public Section addWordToSection(AddWordToSectionRequest request){
         Section section = sectionRepository.findByName(request.getSectionName()).orElseThrow();
         List<String> words = section.getWords();
@@ -46,7 +45,6 @@ public class SectionService {
         words.add(request.getWord());
         return sectionRepository.save(section);
     }
-
     public List<Section> getAllSections(String username){
         return sectionRepository.findAllByUserModel_Username(username);
     }

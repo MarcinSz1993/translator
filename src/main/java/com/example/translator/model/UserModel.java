@@ -46,9 +46,6 @@ public class UserModel implements UserDetails {
     @JsonManagedReference
     private List<Section> sections;
 
-
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

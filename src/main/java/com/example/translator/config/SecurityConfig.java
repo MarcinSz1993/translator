@@ -32,10 +32,6 @@ public class SecurityConfig {
                         req->req.requestMatchers("/error/**","/section/**","/loginPage/**","/registration/**","/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
-
-
-
-
                 )
                // .formLogin(form -> form.loginPage("/loginPage").permitAll())
                // .logout(LogoutConfigurer::permitAll)
@@ -44,14 +40,11 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
-
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();

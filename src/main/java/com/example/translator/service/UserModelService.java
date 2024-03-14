@@ -15,11 +15,9 @@ import java.util.Optional;
 public class UserModelService {
 
     private final UserRepository userRepository;
-
     public UserModel createUser(UserModel userModel){
         return userRepository.save(userModel);
     }
-
     public List<String> getWordsFromSection(String username,String sectionName){
         Optional<UserModel> user = userRepository.findByUsername(username);
         if(user.isPresent()){

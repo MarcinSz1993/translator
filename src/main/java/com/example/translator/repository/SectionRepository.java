@@ -11,7 +11,6 @@ import java.util.Optional;
 public interface SectionRepository extends JpaRepository<Section,Integer> {
 
     Optional<Section> findByName(String sectionName);
-
     List<Section>findAllByUserModel_Username(String username);
 
 }

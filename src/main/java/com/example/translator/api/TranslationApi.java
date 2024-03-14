@@ -6,6 +6,5 @@ import com.example.translator.request.DataRequestForTranslation;
 public interface TranslationApi {
 
     TranslationDto getTranslationEn(DataRequestForTranslation dataRequestForTranslation);
-
     TranslationDto getTranslationPl(DataRequestForTranslation dataRequestForTranslation);
 }
