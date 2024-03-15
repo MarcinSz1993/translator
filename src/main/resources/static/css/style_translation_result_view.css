@@ -23,3 +23,7 @@ input.section{
 text-align: center;
     font-size: small;
 }
+
+form.logout{
+    text-align: center;
+}

@@ -23,3 +23,7 @@ li{
 .backToSections{
     text-align: right;
 }
+
+form.logout{
+    text-align: center;
+}
