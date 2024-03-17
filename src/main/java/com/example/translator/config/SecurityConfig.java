@@ -29,23 +29,14 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/error/**","/section/**","/loginPage/**","/registration/**","/**").permitAll()
+                        req->req.requestMatchers("/error/**","/loginPage/**","/registration/**","/css/**").permitAll()
                                 .anyRequest()
-                                .authenticated()
-
-
-
-
-                )
-               // .formLogin(form -> form.loginPage("/loginPage").permitAll())
-               // .logout(LogoutConfigurer::permitAll)
+                                .authenticated())
                 .userDetailsService(userDetailsImpl)
                 .sessionManagement(session ->session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
-
     }
     @Bean
     public PasswordEncoder passwordEncoder() {

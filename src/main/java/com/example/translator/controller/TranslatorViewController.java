@@ -5,7 +5,6 @@ import com.example.translator.model.UserModel;
 import com.example.translator.repository.UserRepository;
 import com.example.translator.request.DataRequestForTranslation;
 import com.example.translator.service.JwtService;
-import com.example.translator.service.SectionService;
 import com.example.translator.service.TranslatorService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Optional;
-
 @Controller
 @RequiredArgsConstructor
 public class TranslatorViewController {
@@ -26,7 +23,6 @@ public class TranslatorViewController {
     private final TranslatorService translatorService;
     private final JwtService jwtService;
     private final UserRepository userRepository;
-    private final SectionService sectionService;
 
     @GetMapping("/")
     public String homePage(HttpServletRequest request){
