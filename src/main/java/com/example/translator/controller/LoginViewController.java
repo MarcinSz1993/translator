@@ -32,6 +32,8 @@ public class LoginViewController {
         response.addCookie(cookie);
         session.setAttribute("username", userModel.getUsername());
 
+        response.setHeader("Authorization","Bearer " + token);
+
         return "login_successful_view";
     }
 }

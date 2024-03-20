@@ -15,21 +15,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class SecurityConfig implements HandlerInterceptor, WebMvcConfigurer {
 
     private final UserDetailsImpl userDetailsImpl;
     private final JwtAuthenticationFilter authenticationFilter;
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/error/**","/loginPage/**","/registration/**","/css/**").permitAll()
+                        req->req.requestMatchers("/error/**","/loginPage/**","/register","/registration/**","/css/**").permitAll()
                                 .anyRequest()
                                 .authenticated())
                 .userDetailsService(userDetailsImpl)

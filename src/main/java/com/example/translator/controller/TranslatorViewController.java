@@ -26,6 +26,8 @@ public class TranslatorViewController {
 
     @GetMapping("/")
     public String homePage(HttpServletRequest request){
+
+        String authorization = request.getHeader("Authorization");
         Cookie[] cookies = request.getCookies();
         if(cookies != null){
             for(Cookie cookie : cookies){
@@ -35,7 +37,7 @@ public class TranslatorViewController {
                     String username = jwtService.extractUsername(token);
                     UserModel user = userRepository.findByUsername(username).orElseThrow();
 
-                    if(jwtService.isValid(token,user)){
+                    if(jwtService.isValid(authorization,user)){
                         return "translator_view";
                     } else {
                         return "translator_view_error";
