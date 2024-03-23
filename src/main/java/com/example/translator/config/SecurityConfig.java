@@ -21,10 +21,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig implements HandlerInterceptor, WebMvcConfigurer {
+public class SecurityConfig {
 
     private final UserDetailsImpl userDetailsImpl;
     private final JwtAuthenticationFilter authenticationFilter;
+
 
 
     @Bean
@@ -33,9 +34,10 @@ public class SecurityConfig implements HandlerInterceptor, WebMvcConfigurer {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/error/**","/loginPage/**","/register","/registration/**","/css/**").permitAll()
-                                .anyRequest()
-                                .authenticated())
+                        req->req.requestMatchers("/error/**","/loginPage/**","/register","/registration/**","/css/**", "/translator").permitAll()
+//                                .anyRequest()
+//                                .authenticated()
+                )
                 .userDetailsService(userDetailsImpl)
                 .sessionManagement(session ->session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

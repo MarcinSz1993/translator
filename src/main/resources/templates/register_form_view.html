@@ -8,11 +8,11 @@
 <body>
 <br><br><br><br><br><br><br><br><br><br><br>
 <form th:action="@{/registration}" method="post" th:object="${user}">
-    <label>First name: <input type="text" name="firstName"></label><br><br>
-    <label>Last name: <input type="text" name="lastName"></label><br><br>
-    <label>User name: <input type="text" name="username"></label><br><br>
-    <label>Email: <input type="text" name="email"></label><br><br>
-    <label>Password: <input type="password" name="password"></label><br><br><br>
+    <label>First name: <input type="text" name="firstName" placeholder="min 2 znaki"></label><br><br>
+    <label>Last name: <input type="text" name="lastName" placeholder="min 2 znaki"></label><br><br>
+    <label>User name: <input type="text" name="username" placeholder="min 4 znaki"></label><br><br>
+    <label>Email: <input type="text" name="email" placeholder="example@example.pl"></label><br><br>
+    <label>Password: <input type="password" name="password" placeholder="min 5 znaków"></label><br><br><br>
     <input type="submit" value="Register">
 </form>
 

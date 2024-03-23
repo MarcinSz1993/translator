@@ -12,7 +12,6 @@ import lombok.Setter;
 public class TranslationFromApi {
 
     private String detected_source_language;
-
     private String text;
 
 }

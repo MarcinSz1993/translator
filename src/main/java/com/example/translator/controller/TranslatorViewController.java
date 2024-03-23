@@ -15,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping
 @RequiredArgsConstructor
 public class TranslatorViewController {
 
@@ -24,7 +26,7 @@ public class TranslatorViewController {
     private final JwtService jwtService;
     private final UserRepository userRepository;
 
-    @GetMapping("/")
+    @GetMapping("/translator")
     public String homePage(HttpServletRequest request){
 
         String authorization = request.getHeader("Authorization");
@@ -37,7 +39,7 @@ public class TranslatorViewController {
                     String username = jwtService.extractUsername(token);
                     UserModel user = userRepository.findByUsername(username).orElseThrow();
 
-                    if(jwtService.isValid(authorization,user)){
+                    if(jwtService.isValid(token,user)){
                         return "translator_view";
                     } else {
                         return "translator_view_error";

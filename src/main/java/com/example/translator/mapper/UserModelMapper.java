@@ -12,6 +12,9 @@ import lombok.Setter;
 public class UserModelMapper {
 
     public static UserModelDto convertUserModelToUserModelDto(UserModel userModel){
+        if(userModel == null){
+            throw new NullPointerException();
+        }
         return new UserModelDto(
                 userModel.getFirstName(),
                 userModel.getLastName(),

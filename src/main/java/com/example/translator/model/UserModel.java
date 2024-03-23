@@ -2,7 +2,6 @@ package com.example.translator.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,13 +25,17 @@ public class UserModel implements UserDetails {
     @Column(name = "id")
     private Integer id;
 
+    @Length(min = 2,max = 15,message = "First name should have minimum 2 characters!")
     private String firstName;
 
+    @Length(min = 2,max = 15,message = "Last name should have minimum 2 characters!")
     private String lastName;
 
     @Column(unique = true)
+    @Length(min = 2,max = 15,message = "Username name should have minimum 4 characters!")
     private String username;
 
+    @Length(min = 5,message = "Password cannot be shorter than 5 characters!")
     private String password;
 
     @Column(unique = true)

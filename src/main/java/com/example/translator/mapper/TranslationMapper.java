@@ -16,7 +16,6 @@ import java.util.List;
 public class TranslationMapper {
 
     public static TranslationDto mapFromTranslationResponseToTranslationDto(TranslationResponse translationResponse){
-
         TranslationFromApi[] translations = translationResponse.getTranslations();
         List<TranslationFromApi> list = Arrays.asList(translations);
         String text = list.get(0).getText();
