@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 @Service
 @RequiredArgsConstructor
@@ -39,8 +40,13 @@ public class SectionService {
         }
     }
 
-    public Section addWordToSection(AddWordToSectionRequest request){
-        Section section = sectionRepository.findByName(request.getSectionName()).orElseThrow();
+    public Section addWordToSection(AddWordToSectionRequest request) throws Throwable {
+        Section section = sectionRepository.findByName(request.getSectionName()).orElseThrow(new Supplier<Throwable>() {
+            @Override
+            public Throwable get() {
+                return new SectionNotExistsException(request.getSectionName());
+            }
+        });
         List<String> words = section.getWords();
 
         words.add(request.getWord());

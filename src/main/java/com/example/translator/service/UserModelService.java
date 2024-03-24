@@ -1,5 +1,6 @@
 package com.example.translator.service;
 
+import com.example.translator.exception.SectionNotExistsException;
 import com.example.translator.exception.UserNotFoundException;
 import com.example.translator.model.Section;
 import com.example.translator.model.UserModel;
@@ -24,10 +25,13 @@ public class UserModelService {
         Optional<UserModel> user = userRepository.findByUsername(username);
         if(user.isPresent()){
             UserModel userModel = user.get();
-            List<Section> list = userModel.getSections().stream()
-                    .filter(section -> section.getName().equals(sectionName))
-                    .toList();
-            return list.get(0).getWords();
+            if(userModel.getSections().isEmpty()){
+                throw new SectionNotExistsException(sectionName);
+            }
+                List<Section> list = userModel.getSections().stream()
+                        .filter(section -> section.getName().equals(sectionName))
+                        .toList();
+                return list.get(0).getWords();
         }
         else {
             throw new UserNotFoundException(username);

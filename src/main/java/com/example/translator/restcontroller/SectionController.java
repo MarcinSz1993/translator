@@ -22,7 +22,7 @@ public class SectionController {
     }
 
     @PutMapping("/")
-    public Section addWordToSection(@RequestBody AddWordToSectionRequest request){
+    public Section addWordToSection(@RequestBody AddWordToSectionRequest request) throws Throwable {
         return sectionService.addWordToSection(request);
     }
 }

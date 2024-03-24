@@ -70,7 +70,7 @@ public class SectionViewController {
         }
 
         @PostMapping("/addWord")
-        public String addWordToSection(@ModelAttribute("addWordForm") AddWordToSectionRequest addWordForm){
+        public String addWordToSection(@ModelAttribute("addWordForm") AddWordToSectionRequest addWordForm) throws Throwable {
             String sectionName = addWordForm.getSectionName();
             String word = addWordForm.getWord();
             addWordForm.setSectionName(sectionName);
