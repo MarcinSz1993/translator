@@ -41,14 +41,8 @@ public class SectionService {
     }
 
     public Section addWordToSection(AddWordToSectionRequest request) throws Throwable {
-        Section section = sectionRepository.findByName(request.getSectionName()).orElseThrow(new Supplier<Throwable>() {
-            @Override
-            public Throwable get() {
-                return new SectionNotExistsException(request.getSectionName());
-            }
-        });
+        Section section = sectionRepository.findByName(request.getSectionName()).orElseThrow((Supplier<Throwable>) () -> new SectionNotExistsException(request.getSectionName()));
         List<String> words = section.getWords();
-
         words.add(request.getWord());
         return sectionRepository.save(section);
     }
