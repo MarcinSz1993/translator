@@ -3,3 +3,14 @@ kettle
 bed
 cloud
 cloud
+chleb
+bed
+chleb
+kettle
+breakfast
+cloud
+desk
+computer
+refrigerator
+roll
+egg

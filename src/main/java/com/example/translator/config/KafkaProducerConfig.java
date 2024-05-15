@@ -11,4 +11,8 @@ public class KafkaProducerConfig {
     public NewTopic createTopic(){
         return new NewTopic("translations",3,(short)1 );
     }
+    @Bean
+    public NewTopic createTranslationCompleteTopic(){
+        return new NewTopic("translationCompleted",2,(short)1);
+    }
 }

@@ -21,4 +21,9 @@ public class KafkaMessageListener {
         writer.println(translation);
         writer.close();
     }
+    @KafkaListener(topics = "translationCompleted",groupId = "translator-group")
+    public void consumeMessageTranslationCompleted(String message){
+        log.info(message);
+
+    }
 }

@@ -35,6 +35,7 @@ public class TranslatorService implements TranslationApi {
                 .block();
 
         kafkaMessageProducer.sendMessageToTopic(translation);
+        kafkaMessageProducer.sendMessageTranslationCompletedToTopic("Translation completed for: " + dataRequestForTranslation.getText()[0]);
         return translation;
 
     }
