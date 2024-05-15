@@ -9,6 +9,9 @@ import com.example.translator.repository.UserRepository;
 import com.example.translator.request.AddSectionRequest;
 import com.example.translator.request.AddWordToSectionRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,7 @@ public class SectionService {
     private final SectionRepository sectionRepository;
     private final UserRepository userRepository;
 
+    @CacheEvict(value = "sections", allEntries = true)
     public Section addSection(UserDetails userDetails, AddSectionRequest request) {
         Section section = new Section();
         section.setName(request.getSectionName());
@@ -47,8 +51,14 @@ public class SectionService {
         return sectionRepository.save(section);
     }
 
+
+    @Cacheable("sections")
     public List<Section> getAllSections(String username){
+        System.out.println("Method has been invoked");
+
         return sectionRepository.findAllByUserModel_Username(username);
+        
     }
+
 
 }

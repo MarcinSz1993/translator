@@ -9,6 +9,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/section")
 @RequiredArgsConstructor
@@ -25,4 +27,11 @@ public class SectionController {
     public Section addWordToSection(@RequestBody AddWordToSectionRequest request) throws Throwable {
         return sectionService.addWordToSection(request);
     }
+
+    @GetMapping("/")
+    public List<Section> showAllSections(@AuthenticationPrincipal UserDetails userDetails){
+       return sectionService.getAllSections(userDetails.getUsername());
+    }
+
+
 }

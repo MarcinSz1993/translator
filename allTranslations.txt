@@ -1,3 +1,5 @@
 computer
 kettle
 bed
+cloud
+cloud
