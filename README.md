@@ -2,13 +2,6 @@
 <h1>The project is a web application designed to aid in learning the English language by translating words and sentences.
 It utilizes a free API for translations and provides a simple user interface where users can create sections and add words to them.</h1>
 
-<h2>How to install this app?</h2>
-<ul>
-  <li>Install docker on your machine.</li>
-  <li>Go to DEV-MY_CHANGES in this repository and find 'docker-compose.yml' file or click on <a href="https://github.com/MarcinSz1993/translator/blob/dev-my_changes/docker-compose.yml">HERE</a></li>
-  <li>Download the raw file on your machine, open the folder where you saved this file and open cmd in this folder.</li>
-  <li>Type command "docker-compose up" and press ENTER.</li>
-</ul>
 
 <h2>How to use this application?</h2>
 Go to the main page <b>http://localhost:8080/loginPage</b> and click on 'Rejestracja' button. <br>
