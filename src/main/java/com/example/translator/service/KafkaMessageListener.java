@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 @Component
 @Slf4j
 public class KafkaMessageListener {
-
     @KafkaListener(topics = "translations",groupId = "translator-group")
     public void consumeMessageAndSaveToFile(TranslationDto translationDto) throws FileNotFoundException {
         String translation = translationDto.getTranslation();
