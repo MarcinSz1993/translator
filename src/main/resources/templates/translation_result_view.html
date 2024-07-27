@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Translation</title>
+    <title>Translation Result</title>
     <link rel="stylesheet" type="text/css" href="/css/style_translation_result_view.css">
 </head>
 <body>
-<h1>Welcome!</h1>
-<h2>Below you find translated text:</h2>
-<p th:text="${translation}" class="translation-result"></p>
+<div class="container">
+    <h1>Welcome!</h1>
+    <h2>Below you find the translated text:</h2>
+    <p th:text="${translation}" class="translation-result"></p>
 
-<form method="get" action="/sections/all">
-    <p><label><input class="section" type="submit" value="Dodaj te lub inne słowo do Twojej sekcji."></label></p>
-</form>
-<p><a href="/">Back to main page</a> </p>
+    <form method="get" action="/sections/all">
+        <input class="section" type="submit" value="Add this or other words to your section.">
+    </form>
+
+    <p><a href="/" class="back-link">Back to main page</a></p>
+</div>
 </body>
 </html>

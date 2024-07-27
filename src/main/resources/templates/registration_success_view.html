@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/style_registration_successful.css">
-    <title>Title</title>
+    <title>Registration Complete</title>
 </head>
 <body>
-<br><br><br><br><br>
-<h1>Registration complete!</h1>
-<br>
-<br>
-<h1><a href="/loginPage">Zaloguj się</a></h1>
-<div th:insert="~{part/footer::footer}"></div>
+<div class="container">
+    <h1>Registration Complete!</h1>
+    <div class="link">
+        <a href="/loginPage">Log In</a>
+    </div>
+</div>
+<footer>
+    <div th:insert="~{part/footer::footer}"></div>
+</footer>
 </body>
 </html>

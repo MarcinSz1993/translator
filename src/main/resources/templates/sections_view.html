@@ -6,38 +6,40 @@
     <title>Sections</title>
 </head>
 <body>
-<br><br><br>
-<h2 th:text="${lastTranslation}"  class="translation-result"></h2>
-<h2 th:text="${wordToTranslate}" class="wordToTranslate"></h2>
-<br><br><br>
-<h1>Twoje sekcje</h1>
-<br>
+<div class="container">
+    <h2 th:text="${lastTranslation}" class="translation-result"></h2>
+    <h2 th:text="${wordToTranslate}" class="wordToTranslate"></h2>
 
-<table class="table">
-    <thead>
-    </thead>
-    <tbody>
-    <tr th:each="section : ${sections}">
-        <td><a class="styleSectionName" th:href="@{'/sections/singleSection?sectionName=' + ${section.getName()}}" th:text="${section.getName()}"></a></td>
-        <td style="white-space: nowrap">
-            <form th:action="@{/sections/addWord}" method="post" th:object="${addWordForm}">
-                <input type="hidden" th:name="sectionName" th:value="${section.getName()}">
-                <label for="word"></label>
-                <input type="text" id="word" name="word" required placeholder="słówko/zdanie">
-            <button type="submit">Dodaj słówko/zdanie do tej sekcji.</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<br><br>
-<form th:action="@{/sections/createSection}" method="post">
-    <label for="sectionName">Utwórz nową sekcję:</label>
-    <input type="text" id="sectionName" name="sectionName" required placeholder="Nazwa nowej sekcji">
-    <button type="submit">Utwórz Sekcję</button>
+    <h1>Your Sections</h1>
 
-</form>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Section Name</th>
+            <th>Add Word/Phrase</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="section : ${sections}">
+            <td><a class="styleSectionName" th:href="@{'/sections/singleSection?sectionName=' + ${section.getName()}}" th:text="${section.getName()}"></a></td>
+            <td>
+                <form th:action="@{/sections/addWord}" method="post" th:object="${addWordForm}">
+                    <input type="hidden" th:name="sectionName" th:value="${section.getName()}">
+                    <label for="word"></label><input type="text" id="word" name="word" required placeholder="Word/Phrase" class="form-input">
+                    <button type="submit" class="form-button">Add to Section</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-<p><a href="/">Back to translator</a></p>
+    <form th:action="@{/sections/createSection}" method="post" class="create-section-form">
+        <label for="sectionName">Create New Section:</label>
+        <input type="text" id="sectionName" name="sectionName" required placeholder="New Section Name" class="form-input">
+        <button type="submit" class="form-button">Create Section</button>
+    </form>
+
+    <p><a href="/" class="back-link">Back to Translator</a></p>
+</div>
 </body>
 </html>

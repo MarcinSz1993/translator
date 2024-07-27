@@ -2,31 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your the best translator</title>
+    <title>Best Translator</title>
     <link rel="stylesheet" type="text/css" href="/css/style_translator_view.css">
 </head>
 <body>
-<h1>Welcome!</h1>
-<h2>What text do you want to translate?</h2>
-<br>
-<p class="from-polish-to-english">PL--->EN</p>
-<form method="post" action="/translateEn">
-    <label>
-        <input name="text[0]" type="text" placeholder="Wpisz tekst">
-    </label>
-    <input type="submit" value="Pokaż tłumaczenie">
-</form>
+<div class="container">
+    <h1>Welcome!</h1>
+    <h2>What text do you want to translate?</h2>
 
-<p class="from-english-to-polish">EN--->PL</p>
-<form method="post" action="/translatePl">
-    <label>
-        <input name="text[0]" type="text" placeholder="Type text">
-    </label>
-    <input type="submit" value="Show translation">
-</form>
+    <div class="form-container">
+        <p class="translation-label">PL&nbsp;&rarr;&nbsp;EN</p>
+        <form method="post" action="/translateEn">
+            <label>
+                <input name="text[0]" type="text" placeholder="Wpisz tekst">
+            </label>
+            <input type="submit" value="Pokaż tłumaczenie">
+        </form>
+    </div>
 
-<br>
-
+    <div class="form-container">
+        <p class="translation-label">EN&nbsp;&rarr;&nbsp;PL</p>
+        <form method="post" action="/translatePl">
+            <label>
+                <input name="text[0]" type="text" placeholder="Type text">
+            </label>
+            <input type="submit" value="Show translation">
+        </form>
+    </div>
+</div>
 </body>
 </html>
 

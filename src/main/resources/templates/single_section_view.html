@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/style_single_section_view.css">
-    <title th:text="${sectionName}"></title>
+    <title th:text="${sectionName}">Section Name</title>
 </head>
 <body>
-<h1 th:text="'Sekcja: ' + ${sectionName}"></h1>
-<h2>Twoje zapisane słówka/zdania:</h2>
-<ul>
-    <li th:each="word : ${wordsInSection}" th:text="${word}"></li>
-</ul>
-<p class="backToTranslator"> <a href="/">Powrót do translatora.</a></p>
-<p class="backToSections"> <a href="/sections/all">Powrót do Twoich sekcji.</a></p>
+<div class="container">
+    <h1 th:text="'Section: ' + ${sectionName}"></h1>
+    <h2>Your Saved Words/Phrases:</h2>
+    <ul class="word-list">
+        <li th:each="word : ${wordsInSection}" th:text="${word}"></li>
+    </ul>
+    <div class="links">
+        <p class="backToTranslator"><a href="/">Back to Translator</a></p>
+        <p class="backToSections"><a href="/sections/all">Back to Your Sections</a></p>
+    </div>
+</div>
 </body>
 </html>
