@@ -3,7 +3,7 @@
 <h1> It utilizes a free API for translations and provides a simple user interface where users can create sections and add words to them.</h1>
 </div> <br>
 
-### Before downloading and installing the application I would like to invite you to watch a short presentation of the app. In this short video you will find out how to use the app. To watch the presentation just click at the picture on the bottom of this page.
+### Before downloading and installing the application I would like to invite you to watch a short presentation of the app. In this short video you will find out how to use the app. To watch the presentation just click on the picture at the bottom of this page.
 
 ## What do you need to run the app:
 1. Java 17 or higher.
