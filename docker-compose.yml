@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   translator_database:
     image: postgres
@@ -13,7 +11,7 @@ services:
       - "5432:5432"
 
   translator_app:
-    image: marcinsz1993/translator_app:v2.0
+    image: marcinsz1993/translator_app:v4.0
     ports:
       - "8080:8080"
     depends_on:
