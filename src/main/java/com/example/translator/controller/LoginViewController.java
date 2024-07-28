@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginViewController {
 
     private final AuthenticationService authenticationService;
-
     @GetMapping("/loginPage")
     public String showLoginPage() {
         return "login_view";

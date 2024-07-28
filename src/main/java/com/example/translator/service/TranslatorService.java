@@ -10,15 +10,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 public class TranslatorService implements TranslationApi {
-
-
     private final WebClient webClient;
-
     public TranslatorService(WebClient webClient) {
         this.webClient = webClient;
     }
-
-
     public TranslationDto getTranslationEn(DataRequestForTranslation dataRequestForTranslation) {
         dataRequestForTranslation.setTarget_lang("EN");
         return webClient.post()
@@ -31,7 +26,6 @@ public class TranslatorService implements TranslationApi {
                 .map(TranslationMapper::mapFromTranslationResponseToTranslationDto)
                 .block();
     }
-
     @Override
     public TranslationDto getTranslationPl(DataRequestForTranslation dataRequestForTranslation) {
         dataRequestForTranslation.setTarget_lang("PL");
@@ -45,5 +39,4 @@ public class TranslatorService implements TranslationApi {
                 .map(TranslationMapper::mapFromTranslationResponseToTranslationDto)
                 .block();
     }
-
 }

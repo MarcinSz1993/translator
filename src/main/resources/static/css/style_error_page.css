@@ -1,8 +1,25 @@
-body{
-    background-color: red;
+body {
+    background-color: #ff4d4d; /* Jasny czerwony, bardziej przyjazny dla oka */
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-h1{
+
+.container {
     text-align: center;
-    color: black;
-    font-size: large;
+    padding: 20px;
+    background-color: #333333; /* Ciemniejszy tło dla lepszego kontrastu tekstu */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 24px; /* Większa czcionka dla lepszej widoczności */
+    margin: 0;
 }

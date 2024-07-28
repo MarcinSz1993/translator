@@ -10,7 +10,6 @@ import lombok.Setter;
 public class TranslationDto {
 
     private String translation;
-
     @Override
     public String toString() {
         return "TranslationDto{" +

@@ -2,12 +2,10 @@ package com.example.translator.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,9 +43,6 @@ public class UserModel implements UserDetails {
     @OneToMany(mappedBy = "userModel",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Section> sections;
-
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

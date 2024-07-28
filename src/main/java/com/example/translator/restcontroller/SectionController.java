@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.*;
 public class SectionController {
 
     private final SectionService sectionService;
-
     @PostMapping("/")
     public Section addSection(@AuthenticationPrincipal UserDetails userDetails, @RequestBody AddSectionRequest request) {
         return sectionService.addSection(userDetails, request);
     }
-
     @PutMapping("/")
     public Section addWordToSection(@RequestBody AddWordToSectionRequest request){
         return sectionService.addWordToSection(request);

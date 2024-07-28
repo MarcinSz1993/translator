@@ -13,7 +13,6 @@ import java.util.List;
 public class UserModelController {
 
     private final UserModelService userModelService;
-
     @PostMapping("/")
     UserModel createUser(@RequestBody UserModel userModel){
         return userModelService.createUser(userModel);

@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/style_login_successful.css">
-    <title>Login ok</title>
+    <title>Login Successful</title>
 </head>
 <body>
-<br><br><br><br><br><br><br><br><br><br><br>
-<h1>Login successful!</h1>
-<h3><a href="/">Przejdź do translatora</a></h3>
-<div th:insert="~{part/footer :: footer}"></div>
+<div class="container">
+    <h1>Login Successful!</h1>
+    <h3><a href="/" class="home-link">Go to Translator</a></h3>
+</div>
+<footer>
+    <div th:insert="~{part/footer :: footer}"></div>
+</footer>
 </body>
 </html>
