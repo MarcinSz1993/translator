@@ -33,4 +33,9 @@ public class LoginViewController {
 
         return "login_successful_view";
     }
+
+    @GetMapping("/mainPage")
+    public String showMainPage() {
+        return "main_page_view";
+    }
 }

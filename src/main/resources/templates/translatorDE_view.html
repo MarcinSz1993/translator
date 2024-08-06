@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Best Translator</title>
+    <link rel="stylesheet" type="text/css" href="/css/style_translator_view.css">
+</head>
+<body>
+<div class="container">
+    <h1>Welcome!</h1>
+    <h2>What text do you want to translate?</h2>
+
+    <div class="form-container">
+        <p class="translation-label">PL&nbsp;&rarr;&nbsp;DE</p>
+        <form method="post" action="translate">
+            <input type="hidden" name="targetLanguage" value="DE">
+            <input type="hidden" name="sourceLanguage" value="PL">
+            <label>
+                <input name="text[0]" type="text" placeholder="Wpisz tekst">
+            </label>
+            <input type="submit" value="Pokaż tłumaczenie">
+        </form>
+    </div>
+
+    <div class="form-container">
+        <p class="translation-label">DE&nbsp;&rarr;&nbsp;PL</p>
+        <form method="post" action="/translate">
+            <input type="hidden" name="targetLanguage" value="PL">
+            <input type="hidden" name="sourceLanguage" value="DE">
+            <label>
+                <input name="text[0]" type="text" placeholder="Text eingeben">
+            </label>
+            <input type="submit" value="Übersetzung anzeigen">
+        </form>
+    </div>
+</div>
+</body>
+</html>

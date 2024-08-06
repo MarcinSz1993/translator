@@ -16,14 +16,13 @@ import org.springframework.web.bind.annotation.*;
 public class TranslationController {
 
     private final TranslatorService translatorService;
-    @PostMapping("/translateEn")
-    public TranslationDto translateEn(@RequestBody DataRequestForTranslation dataRequestForTranslation){
-        return translatorService.getTranslationEn(dataRequestForTranslation);
+    @PostMapping("/translate")
+    public TranslationDto translate(@RequestParam String targetLanguage,
+                                    @RequestParam String sourceLanguage,
+                                    @RequestBody DataRequestForTranslation dataRequestForTranslation){
+        return translatorService.translate(targetLanguage,sourceLanguage,dataRequestForTranslation);
     }
-    @PostMapping("/translatePl")
-    public TranslationDto translatePl(@RequestBody DataRequestForTranslation dataRequestForTranslation){
-        return translatorService.getTranslationPl(dataRequestForTranslation);
-    }
+
 
 
 

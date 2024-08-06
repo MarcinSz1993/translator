@@ -21,24 +21,26 @@ h1 {
     padding: 20px;
 }
 
-h3 {
-    color: #ffffff;
-    margin: 10px 0; /* Adjusted to give equal space above and below */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.home-link {
-    color: #007bff;
+.button {
+    color: #ffffff;
+    background-color: #007bff;
     text-decoration: none;
     font-size: 18px;
-    padding: 10px;
+    padding: 15px;
     border: 2px solid #007bff;
     border-radius: 4px;
     display: inline-block;
     transition: background-color 0.3s, color 0.3s;
 }
 
-.home-link:hover {
-    background-color: #007bff;
+.button:hover {
+    background-color: #0056b3;
     color: #ffffff;
 }
 

@@ -12,7 +12,9 @@
 
     <div class="form-container">
         <p class="translation-label">PL&nbsp;&rarr;&nbsp;EN</p>
-        <form method="post" action="/translateEn">
+        <form method="post" action="translate">
+            <input type="hidden" name="targetLanguage" value="EN">
+            <input type="hidden" name="sourceLanguage" value="PL">
             <label>
                 <input name="text[0]" type="text" placeholder="Wpisz tekst">
             </label>
@@ -22,7 +24,9 @@
 
     <div class="form-container">
         <p class="translation-label">EN&nbsp;&rarr;&nbsp;PL</p>
-        <form method="post" action="/translatePl">
+        <form method="post" action="/translate">
+            <input type="hidden" name="targetLanguage" value="PL">
+            <input type="hidden" name="sourceLanguage" value="EN">
             <label>
                 <input name="text[0]" type="text" placeholder="Type text">
             </label>

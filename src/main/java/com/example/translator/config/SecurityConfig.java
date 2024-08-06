@@ -33,8 +33,6 @@ public class SecurityConfig {
                                 .anyRequest()
                                 .authenticated()
                 )
-               // .formLogin(form -> form.loginPage("/loginPage").permitAll())
-               // .logout(LogoutConfigurer::permitAll)
                 .userDetailsService(userDetailsImpl)
                 .sessionManagement(session ->session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

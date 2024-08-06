@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style_main_page.css">
+    <title>Translator Options</title>
+</head>
+<body>
+<div class="container">
+    <h1>Choose a Translator or Go to Sections</h1>
+    <div class="button-group">
+        <a href="/en" class="button">Go to PL<->EN Translator</a>
+        <a href="/de" class="button">Go to PL<->DE Translator</a>
+        <a href="/sections/all" class="button">Go to Your Sections</a>
+    </div>
+</div>
+<footer>
+    <div th:insert="~{part/footer :: footer}"></div>
+</footer>
+</body>
+</html>
