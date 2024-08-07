@@ -13,3 +13,7 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+translator:
+  apiKey: DeepL-Auth-Key 5faf23e8-6f6d-4fff-ad4c-6702437406f2:fx
+  uri: https://api-free.deepl.com/v2/translate
